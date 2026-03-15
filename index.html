@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>User Registration</title>
+
+<style>
+
+body{
+font-family: Arial;
+background: linear-gradient(135deg,#6a11cb,#2575fc);
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+}
+
+.form-box{
+background:white;
+padding:30px;
+border-radius:10px;
+width:320px;
+box-shadow:0 10px 25px rgba(0,0,0,0.2);
+text-align:center;
+}
+
+input{
+width:100%;
+padding:10px;
+margin:10px 0;
+border:1px solid #ccc;
+border-radius:6px;
+}
+
+button{
+width:100%;
+padding:10px;
+background:#2575fc;
+color:white;
+border:none;
+border-radius:6px;
+font-size:16px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1a5ed8;
+}
+
+#msg{
+margin-top:10px;
+color:green;
+font-weight:bold;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="form-box">
+
+<h2>Register</h2>
+
+<form id="form">
+
+<input type="text" name="name" placeholder="Enter Name" required>
+
+<input type="email" name="email" placeholder="Enter Email" required>
+
+<input type="text" name="phone" placeholder="Enter Phone" required>
+
+<button type="submit">Submit</button>
+
+</form>
+
+<p id="msg"></p>
+
+</div>
+
+<script>
+
+const scriptURL="https://script.google.com/macros/s/AKfycbx4VHPYqZZ0WZawUyfzaZtOzPb26WsHl8CxcYYl4OMkTs8unVoDPlM067wydOKWjo3BGA/exec"
+const form=document.getElementById("form")
+const msg=document.getElementById("msg")
+
+form.addEventListener("submit",e=>{
+e.preventDefault()
+
+fetch(scriptURL,{
+method:"POST",
+body:new FormData(form)
+})
+.then(response=>{
+msg.innerHTML="✅ Data submitted successfully"
+form.reset()
+})
+.catch(error=>{
+msg.innerHTML="❌ Error submitting data"
+})
+
+})
+
+</script>
+
+</body>
+</html>
